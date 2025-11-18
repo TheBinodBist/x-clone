@@ -1,157 +1,88 @@
 import { useSocialAuth } from "@/hooks/useSocialAuth";
-import {
-  ActivityIndicator,
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-} from "react-native";
+import { ActivityIndicator, Image, Text, TouchableOpacity, View } from "react-native";
 
 export default function Index() {
   const { handleSocialAuth, isLoading } = useSocialAuth();
 
   return (
-    <View style={styles.container} >
-      <View style={styles.innerContainer}>
-        <View style={styles.centerContent}>
-         
-          <View style={styles.imageWrapper}>
+    <View className="flex-1 bg-white">
+      <View className="flex-1 px-8 justify-between">
+        <View className="flex-1 justify-center">
+          {/* DEMO IMAGE */}
+          <View className="items-center">
             <Image
               source={require("../../assets/images/auth2.png")}
-              style={styles.demoImage}
+              className="size-96"
               resizeMode="contain"
             />
           </View>
 
-          {/* Buttons */}
-          <View style={styles.buttonContainer}>
-            {/* GOOGLE SIGN-IN */}
+          <View className="flex-col gap-2">
+            {/* GOOGLE SIGNIN BTN */}
             <TouchableOpacity
-              style={styles.button}
+              className="flex-row items-center justify-center bg-white border border-gray-300 rounded-full py-3 px-6"
               onPress={() => handleSocialAuth("oauth_google")}
               disabled={isLoading}
+              style={{
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 1 },
+                shadowOpacity: 0.1,
+                shadowRadius: 2,
+                elevation: 2,
+              }}
             >
               {isLoading ? (
                 <ActivityIndicator size="small" color="#4285F4" />
               ) : (
-                <View style={styles.buttonContent}>
+                <View className="flex-row items-center justify-center">
                   <Image
                     source={require("../../assets/images/google.png")}
-                    style={styles.googleIcon}
+                    className="size-10 mr-3"
                     resizeMode="contain"
                   />
-                  <Text style={styles.buttonText}>Continue with Google</Text>
+                  <Text className="text-black font-medium text-base">Continue with Google</Text>
                 </View>
               )}
             </TouchableOpacity>
 
-            {/* APPLE SIGN-IN */}
+            {/* APPLE SIGNIN ICON */}
             <TouchableOpacity
-              style={styles.button}
+              className="flex-row items-center justify-center bg-white border border-gray-300 rounded-full py-3 px-6"
               onPress={() => handleSocialAuth("oauth_apple")}
               disabled={isLoading}
+              style={{
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 1 },
+                shadowOpacity: 0.1,
+                shadowRadius: 2,
+                elevation: 2,
+              }}
             >
               {isLoading ? (
                 <ActivityIndicator size="small" color="#000" />
               ) : (
-                <View style={styles.buttonContent}>
+                <View className="flex-row items-center justify-center">
                   <Image
                     source={require("../../assets/images/apple.png")}
-                    style={styles.appleIcon}
+                    className="size-8 mr-3"
                     resizeMode="contain"
                   />
-                  <Text style={styles.buttonText}>Continue with Apple</Text>
+                  <Text className="text-black font-medium text-base">Continue with Apple</Text>
                 </View>
               )}
             </TouchableOpacity>
           </View>
 
           {/* Terms and Privacy */}
-          <Text style={styles.termsText}>
-            By signing up, you agree to our{" "}
-            <Text style={styles.linkText}>Terms</Text>,{" "}
-            <Text style={styles.linkText}>Privacy Policy</Text>, and{" "}
-            <Text style={styles.linkText}>Cookie Use</Text>.
+          <Text className="text-center text-gray-500 text-xs leading-4 mt-6 px-2">
+            By signing up, you agree to our <Text className="text-blue-500">Terms</Text>
+            {", "}
+            <Text className="text-blue-500">Privacy Policy</Text>
+            {", and "}
+            <Text className="text-blue-500">Cookie Use</Text>.
           </Text>
         </View>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-  innerContainer: {
-    flex: 1,
-    paddingHorizontal: 32,
-    justifyContent: "space-between",
-  },
-  centerContent: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  imageWrapper: {
-    alignItems: "center",
-    marginBottom: 24,
-  },
-  demoImage: {
-    width: 200,
-    height: 200,
-  },
-  buttonContainer: {
-    flexDirection: "column",
-    gap: 12,
-  },
-  button: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: "#d1d5db",
-    borderRadius: 9999, // rounded-full
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  buttonContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  googleIcon: {
-    width: 40,
-    height: 40,
-    marginRight: 12,
-  },
-  appleIcon: {
-    width: 32,
-    height: 32,
-    marginRight: 12,
-  },
-  buttonText: {
-    color: "black",
-    fontWeight: "500",
-    fontSize: 16,
-  },
-  termsText: {
-    textAlign: "center",
-    color: "#6b7280",
-    fontSize: 12,
-    lineHeight: 16,
-    marginTop: 24,
-    paddingHorizontal: 8,
-  },
-  linkText: {
-    color: "#3b82f6",
-  },
-});
