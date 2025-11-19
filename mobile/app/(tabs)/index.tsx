@@ -3,7 +3,7 @@ import React from 'react'
 
 const Index = () => {
   return (
-    <View>
+    <View className='flex-1 justify-center'>
       <Text>Index</Text>
     </View>
   )
