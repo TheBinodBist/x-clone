@@ -1,4 +1,3 @@
-
 import PostComposer from "@/components/PostComposer";
 import PostsList from "@/components/PostsList";
 import SignOutButton from "@/components/SignOutButton";
